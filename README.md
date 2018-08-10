@@ -1,6 +1,9 @@
 # dots_and_setup
 
+
 ### DEH 08-09-18
+
+__A WORK IN PROGRESS__
 
 
 My collection of dotfiles, lists of installed software, and setup scripts,
