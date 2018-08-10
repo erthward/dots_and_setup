@@ -1,0 +1,175 @@
+"DEH: 08-09-17: Setting up my own Vim configs (to start off, a la
+"https://realpython.com/vim-and-python-a-match-made-in-heaven/)
+
+set nocompatible      " required
+filetype off          " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle/')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Sunset'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Julialang/julia-vim'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Show line numbers by default
+set nu
+" Show line and column number
+set ruler
+" Set encoding to UTF-8
+set encoding=utf-8
+" Expand tabs to spaces
+set expandtab
+"Backspace through everything in insert mode
+set backspace=indent,eol,start
+" DEH 06-01-14: changed to DO wrap lines
+set wrap
+" Highlight search matches
+set hlsearch
+" Incremental searching
+set incsearch
+" Make searches case-insensitive
+set ignorecase
+" ... unless they contain at least one capital letter
+set smartcase
+
+" use :w!! to write to a file using sudo if I forgot to open it with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" Map arrow keys to be based on display lines, not physical lines
+map <Up> gk
+map <Down> gj
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+" And allow docstring viewing when code is folded
+let g:SimpylFold_docstring_preview=1
+
+" Add proper PEP 8 indentation for .py files
+au BufNewFile,BufRead *.py
+\ set tabstop=4
+\| set softtabstop=4
+\| set shiftwidth=4
+\| set textwidth=79
+\| set expandtab
+\| set autoindent
+\| set fileformat=unix
+
+" And add different indentation for other file types
+au BufNewFile,BufRead *.js, *.html, *.css, *.r, *.R, *.sql, *.sh
+\ set tabstop=2
+\| set softtabstop=2
+\| set shiftwidth=3
+
+" Add some customizations for YouCompleteMe
+ " close auto-complete window after done
+let g:ycm_autoclose_preview_window_after_completion=1
+ " define a shortcut for goto definition (i.e. pressing the leader key and then 'g'
+ " when on an object will go to its definition, I believe?)
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Tell vim to check if python is running a virtualenv, and if so switch to it and
+" set us system path so that YouCompleteMe will find appopriate packages
+" python with virtualenv support
+" DEH: Not working for some reason; might be syntax for an older version of Vim?
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"      execfile(activate_this, dict(__file__=activate_this))
+"      EOF
+
+" Make syntax-highlighting prettier
+let python_highlight_all=1
+syntax on
+
+" Add some logic for colorscheme usage
+if has('gui_running')
+  set background=dark
+  colorscheme zenburn
+else
+  colorscheme solarized
+endif
+" Make <F3> to toggle between light and dark schemes
+call togglebg#map("<F3>")
+" And make <F4> and <F5> switch to solarized and zenburn colorschemes
+map <F4> :colorscheme solarized<CR>
+map <F5> :colorscheme zenburn<CR>
+map <F6> :colorscheme vividchalk<CR>
+
+" Set NERDTree to open with <F10>
+nnoremap <F10> :NERDTreeToggle<CR>
+" And let NERDTree ignore .pyc files
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+" Flag unnecessary whitespace
+highlight BadWhitespace term=reverse cterm=reverse ctermfg=4
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Set some other highlight groups
+"highlight Todo term=bold cterm=bold ctermfg=1 guifg=White guibg=Red
+highlight Todo term=bold ctermfg=Red guifg=#80a0ff gui=bold
+
+" Set sunset params
+" NOTE: Change if I move!
+let g:sunset_latitude = 37.8716
+let g:sunset_longitude = -122.2727
+let g:sunset_utc_offset = -8
+
+" Set tslime configurations
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+" Customize indent guides, and set <F12> to toggle them on/off (default off)
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 3
+map <F12> :IndentGuidesToggle<CR>
+
+" Set <F10> to toggle paste on and off 
+" (put on before pasting to terminal from
+" clipboard, to maintain tabbing)
+set pastetoggle=<F7>
+
+
