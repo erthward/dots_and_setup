@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
@@ -129,7 +129,9 @@ if has('gui_running')
   set background=dark
   colorscheme zenburn
 else
-  colorscheme solarized
+  "DEH: 12-22-18: solarized looks awful right now, so coercing to zenburn
+  "colorscheme solarized
+  colorscheme zenburn
 endif
 " Make <F3> to toggle between light and dark schemes
 call togglebg#map("<F3>")
@@ -171,5 +173,4 @@ map <F12> :IndentGuidesToggle<CR>
 " (put on before pasting to terminal from
 " clipboard, to maintain tabbing)
 set pastetoggle=<F7>
-
 

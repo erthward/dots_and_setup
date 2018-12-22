@@ -33,7 +33,7 @@ Steps I took:
 6. run the git clone command in setup_vim.sh, to clone the Vundle repo
 7. open vim and run :PluginInstall
 8. sudo apt install zsh
-9. follow instructions on the zshell website to install it
+9. follow instructions on the oh-my-zsh website to install it
 10. move ~/.zshrc.pre-oh-my-zsh back to ~/.zshrc
 11. git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 12. run the install script in gnome-terminal-colors-solarized and follow on-screen instructions
