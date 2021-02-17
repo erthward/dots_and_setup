@@ -86,8 +86,6 @@ alias duh='du -hs'
 alias less='TERM=xterm less -R'
 #DEH:
 alias lsd='ls -d */'
-#My to do list:
-alias todo='vim ~/todo.md'
 
 # quick zsh mods
 alias rrc='source ~/.zshrc'
@@ -109,7 +107,7 @@ aptx() {
 }
 
 # Reload shell
-r () {
+reload_shell () {
   # Reload X tunells if in tmux
   if [[ -n $TMUX ]]
   then
@@ -279,18 +277,18 @@ alias julcheat='zathura $NIB/code/julia/Julia-cheatsheet.pdf'
 alias py='ipython --pylab'
 alias google='w3m +7 www.google.com'
 alias wiki='w3m http://en.wikipedia.org/wiki/Main_Page#p-search'
+alias b='brave'
 alias f='firefox &'
-alias ch='chromium-browser &'
+alias ch='chromium'
 alias g='google-chrome www.pandora.com'
 alias Z='vim ~/.zshrc'
-alias jd='cd $DESK'
 alias regex='cat ~/my_cheatsheets/regex_cheatsheet.txt | less'
 alias SQL='cat ~/SQL_cheatsheet.txt | less'
 alias glance='cat "$@" | less'
 alias schedule='feh ~/Desktop/fall_14/SCHEDULE.png'
 alias yt='youtube2mp3'
 alias ok='okular'
-alias z='zathura'
+alias z='zotero'
 alias vb='virtualbox'
 alias nice_feh='feh -g 640x480'
 #Disable touchscreen if misbehaving
@@ -310,7 +308,7 @@ alias MAC='cat ~/router/nmap_info/MAC_addresses.txt | less'
 alias copy='xclip -sel clip'
 alias rm='rm -i'
 alias getgiturl='git config --get remote.origin.url | xclip -sel clip'
-alias rbook='okular /media/ihavehands/NIBBIN/code/R/the_R_book.pdf'
+alias rbook='okular /run/media/drew/NIBBIN/code/R/the_R_book.pdf'
 alias mov='vim $DROP/mariko_and_drew_stuff/movies.txt'
 alias wou='vim $DROP/mariko_and_drew_stuff/we_o_us.txt'
 alias dist='zathura $NIB/code/R/Distribution_cheat_sheet_revised_1_3_15_HOBBS_HOOTEN.pdf'
@@ -327,15 +325,48 @@ alias con='sudo openconnect ucbvpn.berkeley.edu --authgroup="3-Library_VPN" -u d
 alias pop='java -jar $B/spring_17/popgen/PopG/PopG.jar'
 alias fel='java -jar $B/spring_17/popgen/Felsenstein.jar'
 alias land='vim $D/landfund.txt'
-alias sp='bash ~/switch_audio_output.sh'
 alias slab='ssh -Y drew@`cat $DROP/office_ip.txt`'
 alias flab='sftp drew@`cat $DROP/office_ip.txt`'
 alias wlab='wakeonlan -i `cat $DROP/office_ip.txt ` `cat $DROP/office_eth2_MAC.txt` && slab'
 alias sav='ssh drewhart@hpc.brc.berkeley.edu'
 alias savy='ssh -Y drewhart@hpc.brc.berkeley.edu'
 alias p='mplayer mplayer *.m[p4][34a]'
-
-
+alias qp='qpdfview'
+alias XXX='shutdown now'
+alias RRR='shutdown now -r'
+alias fh='feh -ZFd'
+alias rs='rstudio-bin'
+alias cheatex='qpdfview ~/latex_cheatsheet.pdf'
+alias skype='skypeforlinux'
+#sp="speaker"
+#alias sp='bash ~/switch_audio_output.sh'
+#sa="switch audio"
+alias sa='bash ~/switch_audio_sink.sh'
+alias r='radian'
+alias gsi='cd $GSI'
+alias benten='ssh drew.hart@benten.dlab.berkeley.edu'
+alias jl='julia'
+alias tj='brave /home/drew/Desktop/think_julia/benlauwens.github.io'
+alias bq='python /home/drew/Desktop/aves/bird_quiz/code/bird_quiz.py'
+#alias conda='~/miniconda3/bin/conda'
+#alias conda-build='~/miniconda3/bin/conda-build'
+alias xs='ssh -Y drewhart@login.xsede.org'
+alias geo='ok ~/geo_timescale_GSA.pdf'
+#command to read today's MODIS-image descriptive text
+alias modis='bash /home/drew/MODIS_daily_img/code/update_background.sh'
+alias modistxt='cat /home/drew/MODIS_daily_img/today.txt | less'
+alias modissave='python /home/drew/MODIS_daily_img/code/archive_MODIS_background.py'
+alias tobira='zathura $J/TOBIRA.pdf'
+# command to help check disk usage (easier name to remember)
+# (run in the directory whose subdirectories and files should be sized up)
+alias usage='ncdu' 
+# command to lock the screen
+alias lk='xflock4'
+# a command to launch the iPython inside whatever virtualenv is active,
+# rather than the system default version of Python
+alias ipy_venv="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+# open the settings manager easily from the CLI
+alias sets="xfce4-settings-manager"
 
 
 #Add env vars also as commands, for quick jumping
@@ -345,7 +376,8 @@ alias B='cd $B'
 alias RES='cd $RES'
 alias E='cd $E'
 alias T='cd $T'
-alias G='cd $S/geonomics/'
+alias G='cd $G/'
+alias SA=' cd $RES/projects/seasonality'
 alias Q='cd $Q'
 alias DL='cd $DL'
 alias NIB='cd $NIB'
@@ -354,7 +386,7 @@ alias P='cd $P'
 alias TID='cd $TID'
 alias N='cd $N'
 alias I='cd $I'
-
+alias J='cd $J'
 
 
 
@@ -393,12 +425,15 @@ function tabcsv() {
 function clip() {xclip -sel clip < $1}
 
 #Shortcut to power off system after n minutes (for listening when going to sleep...)  :)
-function xx(){sudo shutdown -P "$@";}
+function musicXXX(){sudo shutdown -P "$@";}
 
 #Move or cp files or make directories and follow them 
 function cpf(){ cp "$1" "$2" && cd "$2" }
 function mvf(){ mv "$1" "$2" && cd "$2" }
 function mkf(){ mkdir "$1" && cd "$1" }
+
+#Grep a pattern in all files here or further into the directory tree
+function grepinall(){ grep -rne $1}
 
 #cpf() { cp "$@" && goto "$_"; }
 #mvf() { mv "$@" && goto "$_"; }
@@ -415,6 +450,7 @@ export RES=$B/research
 export E=$RES/projects/epiphytes
 export T=$RES/projects/trees
 export S=$RES/projects/sim
+export G=$S/geonomics/geonomics
 export Q=$B/quals
 export TID=$DROP/tiddlywiki
 export DL=$B/dlab
@@ -422,16 +458,22 @@ export N=$B/research/ideas_and_notes/notes/
 export I=$N/meeting_notes/ian_notes
 export A=$B/admin
 export O=$D/stuff/other
-export J=$D/stuff/japanese
+export J=$B/semesters/20f/J10B
 
-export NIB=/media/ihavehands/NIBBIN/
-export NUB=/media/ihavehands/MR\ NUBBIN
-export SLAB=/media/ihavehands/SLAB/
+export NIB=/run/media/drew/NIBBIN/
+export NUB=/run/media/drew/MR\ NUBBIN
+export SLAB=/run/media/drew/SLAB/
 export MIKO=$DROP/mariko_and_drew_stuff
 export MUSIC=$NIB/music/
 export CODE=$NIB/code
 export P=$NIB/papers
 
+#folder for current GSI position
+export GSI=$B/semesters/19f/espm_137
+
+#DEH 05-14-19: Adding correct path to libjvm.so, so that `sudo R CMD javareconf` works
+#and rJava R library can be used
+export LD_LIBRARY_PATH=/usr/lib/jvm/default/jre/lib/amd64/server
 
 #Adding methgo directory to $PATH
 export PATH=$PATH:$B/courses/spring_16/CONS_GEN_WKSHP/software/methgo
@@ -443,9 +485,10 @@ export PATH=$PATH:$HOME/edirect
 #DEH Try to get postgresql connection with psycopg2, etc working, by setting PGDATA variable
 export PGDATA=$HOME/my_pgsql_data/
 
-#DEH 04-06-14: Adding pyGDsanbox to python path
-#export PYTHONPATH=$PYTHONPATH:$HOME/extra_py_tools/sandbox/
-
+#DEH 10-11-19: For some reason, as I was getting ready to package Geonomics and
+#installing/upgrading wheel, twine, etc., pip3 started installing packages in
+#/home/drew/.local/bin, so I'm adding this to my PATH
+export PATH=$PATH:/home/drew/.local/bin:/home/drew/.local/lib
 
 #A place to tweak ls colors:
 #
@@ -465,3 +508,46 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 #DEH 08-11-18: Adding solarized dircolors
 #eval `dircolors /home/ihavehands/gnome-terminal-colors-solarized/dircolors`
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/drew/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/drew/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/drew/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/drew/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# DEH: 04-28-2020:
+# run my script to download today's daily MODIS image,
+# if not already downloaded, and set it as the desktop image
+modis
+
+# DEH: 05-07-2020:
+# The following couple commands were added when I installed Google Cloud SDK:
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/drew/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/path.zsh.inc' ]; then . '/home/drew/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/drew/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/drew/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/completion.zsh.inc'; fi
+
+# DEH: 02-07-21:
+# enable command completion for the AWS CLI
+autoload bashcompinit && bashcompinit
+complete -C '/bin/aws_completer' aws
+
+# DEH: 01-23-21:
+# cursor started overlapping with the prompt (i.e. being set back to the left a few spaces)
+# in ZShell after hitting <Ctrl>+C
+# This is a hacky fix that seems to work (because after a recent system
+# update some of my language settings seem to have been set
+# to JP instead of US, which appears to be the root of the problem
+unset LANG
+source /etc/profile.d/locale.sh

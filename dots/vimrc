@@ -21,20 +21,32 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
+Plugin 'morhetz/gruvbox'
+Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'jacoborus/tender.vim'
+Plugin 'connorholyday/vim-snazzy'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'fortes/vim-escuro'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'aradunovic/perun.vim'
+Plugin 'crusoexia/vim-dream'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vividchalk'
+Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Sunset'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Julialang/julia-vim'
+"Plugin 'Julialang/julia-vim'
+Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'xuhdev/vim-latex-live-preview'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -129,16 +141,41 @@ if has('gui_running')
   set background=dark
   colorscheme zenburn
 else
-  "DEH: 12-22-18: solarized looks awful right now, so coercing to zenburn
   "colorscheme solarized
   colorscheme zenburn
 endif
+" Remap flake8 to <F8> (makes much more sense to me, and frees <F3>-<F7> for colors
+"let no_flake8_maps = 1
+"autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
 " Make <F3> to toggle between light and dark schemes
 call togglebg#map("<F3>")
-" And make <F4> and <F5> switch to solarized and zenburn colorschemes
+" And make <F4> - <F7> switch between colorschemes
+set t_Co=256
 map <F4> :colorscheme solarized<CR>
-map <F5> :colorscheme zenburn<CR>
-map <F6> :colorscheme vividchalk<CR>
+map <F5> :colorscheme PaperColor<CR>
+map <F6> :colorscheme gruvbox<CR>
+map <F7> :colorscheme tender<CR>
+let no_flake8_maps = 1
+map <F8> :color summerfruit256<CR>
+
+
+" DEH: 01-23-19: Create hotkey for LLPStartPreview for LaTeX live rendering
+map <F2> :LLPStartPreview<CR>
+
+"DEH: 01-03-19: Stole a function for toggling column-80 highlight from:
+"https://gist.github.com/jphenow/4437248
+nnoremap <F9> :call<SID>EightyLine()<cr>
+fun! s:EightyLine()
+ if !exists('w:eightyline')
+  let w:eightyline = 1
+  :set colorcolumn=80  " highlight three columns after 'textwidth'
+  :highlight ColorColumn ctermbg=16 guibg=#728187
+ else
+  unl w:eightyline
+  :set colorcolumn=80  " highlight three columns after 'textwidth'
+  :highlight ColorColumn NONE
+ endif
+endfunction
 
 " Set NERDTree to open with <F10>
 nnoremap <F10> :NERDTreeToggle<CR>
@@ -156,7 +193,12 @@ highlight Todo term=bold ctermfg=Red guifg=#80a0ff gui=bold
 " Set sunset params
 " NOTE: Change if I move!
 let g:sunset_latitude = 37.8716
-let g:sunset_longitude = -122.2727
+"DEH: 04-20-20: Changed the next line from negative degrees W to positive
+"additive degrees W. The docs say that W and S must be negative, but it was
+"always incorrectly setting my daytime/nighttime colors, and this fixed it.
+"(setting the UTC_offset to +8 also fixed it, but seemed like more a lie)
+"let g:sunset_longitude = -121.2727
+let g:sunset_longitude = 301.2727
 let g:sunset_utc_offset = -8
 
 " Set tslime configurations
@@ -174,3 +216,12 @@ map <F12> :IndentGuidesToggle<CR>
 " clipboard, to maintain tabbing)
 set pastetoggle=<F7>
 
+" Set default colorscheme
+:colorscheme solarized
+
+" Set tab to 4 spaces, not 8
+setlocal shiftwidth=4
+setlocal expandtab
+
+" turn on cursorline
+set cursorline
