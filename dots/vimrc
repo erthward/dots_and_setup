@@ -138,12 +138,14 @@ syntax on
 
 " Add some logic for colorscheme usage
 if has('gui_running')
-  set background=dark
+  set background=light
   colorscheme zenburn
 else
   "colorscheme solarized
-  colorscheme zenburn
+  set background=light
+  colorscheme solarized
 endif
+
 " Remap flake8 to <F8> (makes much more sense to me, and frees <F3>-<F7> for colors
 "let no_flake8_maps = 1
 "autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
@@ -216,8 +218,9 @@ map <F12> :IndentGuidesToggle<CR>
 " clipboard, to maintain tabbing)
 set pastetoggle=<F7>
 
-" Set default colorscheme
-:colorscheme solarized
+" Set default colorscheme to light PaperColor
+set background=light
+colorscheme PaperColor
 
 " Set tab to 4 spaces, not 8
 setlocal shiftwidth=4

@@ -114,3 +114,10 @@ if ! shopt -oq posix; then
 fi
 
 #source ~/.bash_profile
+
+# DETH: 03-23-21:
+# adding this to set up pyenv to launch automatically
+export PATH="/home/deth/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
