@@ -1,3 +1,6 @@
+# get apt up to date before starting
+sudo apt update && sudo apt upgrade
+
 # install git
 sudo apt install \
    vim \
@@ -7,6 +10,9 @@ sudo apt install \
 # clone this repo
 git clone https://github.com/drewhart/dots_and_setup.git ~/.dots_and_setup
 
+# move the default .bashrc file to the Desktop temporarily
+mv ~/.bashrc ~/Desktop/bashrc.bkp
+
 #create symlinks in home directory for all the dotfiles
 cd ~
 for f in `ls ./dots_and_setup/dots`
@@ -14,25 +20,26 @@ for f in `ls ./dots_and_setup/dots`
         ln -s ./dots_and_setup/dots/$f ~/.$f
   done
 
+# if that succeeded then safely delete the old .bashrc whenever desired!
+
 # do other apt installs
 sudo apt install \
+   python3 \
+   zathura \
+   qpdf \
+   imagemagick \
    mplayer \
    feh \
-   zathura \
-   imagemagick \
-   qpdf \
-   firefox \
    brave-browser \
-   chromium
+   chromium-browser \
+   snapd
 
-# TODO: ADD PY HERE??
+# run snap installs
+sudo snap install \
+   firefox \
+   ferdi \
+   spotify
 
+# now log into Spotify play something good!   :)
 
-# TODO: CLEAN UP FROM HERE DOWN VVV
-
-#set up Zshell
-echo
-echo 'Setting up Zshell...'
-bash ./setup/setup_zsh.sh
-echo
 

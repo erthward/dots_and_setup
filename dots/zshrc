@@ -367,10 +367,10 @@ alias bq='python /home/drew/Desktop/aves/bird_quiz/code/bird_quiz.py'
 alias xs='ssh -Y drewhart@login.xsede.org'
 alias geo='ok ~/References/geo_timescale_GSA.pdf'
 #command to read today's MODIS-image descriptive text
-alias modis='bash /home/deth/MODIS_daily_img/code/update_background.sh'
-alias modistxt='cat /home/deth/MODIS_daily_img/today.txt | less'
+alias modis='bash /home/ter066/MODIS_daily_img/code/update_background.sh'
+alias modistxt='cat /home/ter066/MODIS_daily_img/today.txt | less'
 alias mot='modistxt'
-alias modissave='python /home/deth/MODIS_daily_img/code/archive_MODIS_background.py'
+alias modissave='python /home/ter066/MODIS_daily_img/code/archive_MODIS_background.py'
 alias mofh='fh ~/Pictures/MODIS_daily.jpg'
 alias tobira='zathura $J/TOBIRA.pdf'
 # command to help check disk usage (easier name to remember)
@@ -600,11 +600,6 @@ export PATH=$PATH:$HOME/edirect
 #DEH Try to get postgresql connection with psycopg2, etc working, by setting PGDATA variable
 export PGDATA=$HOME/my_pgsql_data/
 
-#DEH 10-11-19: For some reason, as I was getting ready to package Geonomics and
-#installing/upgrading wheel, twine, etc., pip3 started installing packages in
-#/home/deth/.local/bin, so I'm adding this to my PATH
-export PATH=$PATH:/home/deth/.local/bin:/home/deth/.local/lib
-
 #A place to tweak ls colors:
 #
 #[from output of `dircolors --print-database`]
@@ -628,16 +623,14 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 CONDA_AUTO_ACTIVATE_BASE=false
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/deth/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/ter066/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-#DETH: replace above line with this line speeds up zshell boot substantially but then zsh not properly configured for conda... rrrrrr
-#if [ 1 -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/deth/miniconda3/etc/profile.d/coda.sh" ]; then
-        . "/home/deth/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/ter066/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ter066/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/deth/miniconda3/bin:$PATH"
+        export PATH="/home/ter066/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -672,9 +665,11 @@ xmodmap -pke > ~/.Xmodmap
 # DETH: 03-20-21
 # add snap bin to PATH
 export PATH="$PATH:/snap/bin/"
-source /home/deth/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # DETH: 12-28-21: I do it all the time anyhow, so just start off on Desktop!
 if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
   cd $D
 fi
+#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
