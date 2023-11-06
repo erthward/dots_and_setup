@@ -1,44 +1,34 @@
 # dots_and_setup
 
+My collection of dotfiles and scripts for software installation and configuration,
+to make it easier for me to migrate my working environment to new machines.
 
-### DEH 08-09-18
-
-__A WORK IN PROGRESS__
-
-
-My collection of dotfiles, lists of installed software, and setup scripts,
-to make it easier for me to migrate and/or recreate my working environment
-to/on new machines.
-
-
-Run main_setup.sh to setup anything that be can done automatically. Then 
-remaining software should be installed manually (see ./lists/manual_pkg).
-[NOTE: The scripts may break part-way because of unforeseen dependencies, 
-but should nonetheless serve as a good record of stuff I need to do.]
+Scripts numerically named in the order in which they're intended to be used,
+and could either be executed wholesale or run interactively.
+(...Actually, probably the latter. The scripts may break part-way because
+of unforeseen dependency issues,
+but should nonetheless serve as a good record of the steps to take.)
 
 
-### DEH 08-11-18
-
-__TURNED OUT NOT TO BE A WORK IN PROGRESS BECAUSE MY OS UPDATE FAILED AND I HAD TO REINSTALL__
-
-Steps I took:
+### Steps:
 
 ***NOTE: Best to run*** `sudo apt update` ***between every pair of*** `sudo apt install <pkg>` ***commands.***
 
-1. Reinstall Ubuntu
-2. sudo apt install vim git git-core
-3. git clone https://github.com/drewhart/dots_and_setup.git ~/.dots_and_setup
-4. cd ~
-5. for f in `ls ./.dots_and_setup/dots`; do ln -s ./.dots_and_setup/dots/$f ~/.$f; done
-6. run the git clone command in setup_vim.sh, to clone the Vundle repo
-7. open vim and run :PluginInstall
-8. sudo apt install zsh
-9. follow instructions on the oh-my-zsh website to install it
-10. move ~/.zshrc.pre-oh-my-zsh back to ~/.zshrc
-11. git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
-12. run the install script in gnome-terminal-colors-solarized and follow on-screen instructions
-13. git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
-14. set hotkeys for moving between workspaces, moving windows between workspaces, and maximizing/minimizing windows
+0. Install Ubuntu (or other OS)
+1. Run the `1_apt_setup.sh` script to install git, clone this repo to the correct location, softlink dotfiles, and run other necessary apt installs.
+2.8. sudo apt install zsh
+2.9. follow instructions on the oh-my-zsh website to install it
+2.10. move ~/.zshrc.pre-oh-my-zsh back to ~/.zshrc
+2.11. git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+2.12. run the install script in gnome-terminal-colors-solarized and follow on-screen instructions
+2.13. git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+2.14. set hotkeys for moving between workspaces, moving windows between workspaces, and maximizing/minimizing windows
+3. Run the commands in `3_vim_setup.sh` to install Vundle and then use it to install other
+4. Execute `4_python_and_R_setup.sh` to use conda to create my general-purpose scientific computing environment and install my py and R packages into it. (NOTE: this can easily be used separately or reused later for standalone Python environment configuration.)
+5. Execute `5_julia_setup.sh` to install Julia with my preferred packages (NOTE: this can easily be used separately or reused later for standalone Julia installation.)
+
+# TODO: CLEAN UP REMAINDER BELOW HERE
+14. download snap deb file from Snap's website, then run `sudo snap install ferdi` and `sudo snap install spotify` :)
 15. sudo apt install gnome-tweak-tool, then use it to adjust anything I want (e.g. workspace behavior, top bar)
 16. OPTIONAL: On Ubuntu 18 the mouse kept lagging and stalling, and I couldn't click and drag (or click and highlight thereby); the following line fixed this:
         sudo apt remove xserver-xorg-input-synaptics

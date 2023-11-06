@@ -1,9 +1,0 @@
-git
-R
-vim-tiny
-mplayer
-feh
-zathura
-python-pip
-python3-pip
-

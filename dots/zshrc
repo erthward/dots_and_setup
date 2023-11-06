@@ -13,11 +13,10 @@ autoload -U colors && colors
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-
 # Theme to load - Look in ~/.oh-my-zsh/themes/ or set to "random"
 #ZSH_THEME="norm"
 #ZSH_THEME="gnzh"
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster_DETH"
 
 # Otherwise fucks with tmux window naming
 DISABLE_AUTO_TITLE="true"
@@ -106,13 +105,14 @@ alias erc='vim ~/.zshrc'
 
 # Other
 alias ack='ack-grep'
-alias xc='xclip -selection clip'
+alias clip='xclip -selection clip'
 alias sc='scons --debug explain'
 alias scn='scons -n --debug explain'
 alias evrc='vim ~/.vimrc'
 alias seqinfo='seqmagick info'
 alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
+alias gpt='conda activate sci; python $D/stuff/etc/scripts/chat_with_gpt.py'
 
 # Archeopterix helper
 aptx() {
@@ -281,13 +281,14 @@ eval "$(tmuxifier init -)"
 [[ -s $HOME/pythedge/bin/activate ]] && source $HOME/pythedge/bin/activate
 
 ############# DEH: ALIASES
+#DETH: 01-01-22: set python alias
+alias python='python3'
 alias li='libreoffice'
 alias ipy='ipython notebook --pylab=inline --ext="rmagic" --browser=firefox'
 alias ijy='ipython notebook --pylab=inline --ext="rmagic" --browser=firefox --profile julia'
 alias chripy='ipython notebook --pylab=inline --ext="rmagic" --browser=chromium-browser'
 alias chrijy='ipython notebook --pylab=inline --ext="rmagic" --browser=chromium-browser --profile julia'
 alias julcheat='zathura $NIB/code/julia/Julia-cheatsheet.pdf'
-alias py='ipython --pylab'
 alias google='w3m +7 www.google.com'
 alias wiki='w3m http://en.wikipedia.org/wiki/Main_Page#p-search'
 alias b='brave'
@@ -310,7 +311,6 @@ alias mat='matlab -nodesktop -nosplash'
 alias pot='spotify'
 alias cheapspot='bash -c '"'"'sleep 15 && kill $(ps -A | grep -i "spotifyhelper$" | grep -oE "^[1-9,0]*\s")'"'"' & ; spotify' #kill stupid SpotifyHelper, which guzzles CPU
 alias q='tmuxifier load-session quant'
-#alias m='mutt'
 alias now='date +"%T"'
 alias die='kill %1; fg %1'
 alias header='vim ~/pytools/DATA_header.py'
@@ -321,12 +321,14 @@ alias MAC='cat ~/router/nmap_info/MAC_addresses.txt | less'
 alias copy='xclip -sel clip'
 alias rm='rm -i'
 alias getgiturl='git config --get remote.origin.url | xclip -sel clip'
+alias getgitpat='xclip -selection c /home/deth/Desktop/stuff/keys/ghpat.txt'
+alias getmyorcid='xclip -selection c /home/deth/Desktop/stuff/keys/myorcid.txt'
+alias getazcs='xclip -selection c /home/deth/Desktop/stuff/keys/azcs.txt'
 alias rbook='okular /run/media/drew/NIBBIN/code/R/the_R_book.pdf'
-alias mov='vim $DROP/mariko_and_drew_stuff/movies.txt'
+alias movies='vim $DROP/mariko_and_drew_stuff/movies.txt'
 alias wou='vim $DROP/mariko_and_drew_stuff/we_o_us.txt'
 alias dist='zathura $NIB/code/R/Distribution_cheat_sheet_revised_1_3_15_HOBBS_HOOTEN.pdf'
 alias comp='feh -g 640x480 $D/other/comparison/*'
-alias m='mendeleydesktop'
 alias cm='cmatrix'
 alias ref='referencer'
 alias kana='kanatest'
@@ -343,19 +345,18 @@ alias flab='sftp drew@`cat $DROP/office_ip.txt`'
 alias wlab='wakeonlan -i `cat $DROP/office_ip.txt ` `cat $DROP/office_eth2_MAC.txt` && slab'
 alias sav='ssh drewhart@hpc.brc.berkeley.edu'
 alias savy='ssh -Y drewhart@hpc.brc.berkeley.edu'
-alias p='mplayer mplayer *.m[p4][34a]'
 alias qp='qpdfview'
 alias XXX='shutdown now'
 alias RRR='shutdown now -r'
+alias ZZZ='systemctl suspend'
 alias fh='feh -ZFd'
-alias rs='rstudio-bin'
+alias rs='rstudio'
 alias cheatex='qpdfview ~/latex_cheatsheet.pdf'
 alias skype='skypeforlinux'
 #sp="speaker"
 #alias sp='bash ~/switch_audio_output.sh'
 #sa="switch audio"
 alias sa='bash ~/switch_audio_sink.sh'
-alias r='radian'
 alias gsi='cd $GSI'
 alias benten='ssh drew.hart@benten.dlab.berkeley.edu'
 alias jl='julia'
@@ -368,7 +369,9 @@ alias geo='ok ~/References/geo_timescale_GSA.pdf'
 #command to read today's MODIS-image descriptive text
 alias modis='bash /home/deth/MODIS_daily_img/code/update_background.sh'
 alias modistxt='cat /home/deth/MODIS_daily_img/today.txt | less'
+alias mot='modistxt'
 alias modissave='python /home/deth/MODIS_daily_img/code/archive_MODIS_background.py'
+alias mofh='fh ~/Pictures/MODIS_daily.jpg'
 alias tobira='zathura $J/TOBIRA.pdf'
 # command to help check disk usage (easier name to remember)
 # (run in the directory whose subdirectories and files should be sized up)
@@ -380,11 +383,38 @@ alias lk='xflock4'
 alias ipy_venv="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 # open the settings manager easily from the CLI
 alias sets="xfce4-settings-manager"
-# commands to mount and unmount TNC Box storage
-alias box='rclone mount --daemon tnc_box: /home/deth/Desktop/TNC/box'
-alias debox='fusermount -u /home/deth/Desktop/TNC/box'
-# my TNC todo list
-alias todo='vim ./Desktop/TNC/box/deth_work/TODO.md'
+# lftp to my Berkeley Box account
+alias bbox="lftp drew.hart@berkeley.edu@ftp.box.com"
+# launch zotero
+alias zot="$HOME/zotero/Zotero_linux-x86_64/zotero"
+# launch obsidian
+alias o='obsidian'
+alias pushobs='cd $OBS; git add -A; date | git commit -F -; git push -u origin main; cd -'
+# open a PDF time zone map
+alias tz='z ~/tzs.pdf'
+
+
+# aliases to use within my 'sci' conda environment
+# DETH: 12-07-21: getting rid of --pylab, because it is causing
+#       the weird Qt-related symbol-lookup error that I'm getting
+#       after running `pip install "napari[all]"`. Will try for a 
+#       bit like this, see if no pylab creates problems, then
+#       decide whether or not napari needs to remain installed anyhow
+alias py='ipython --pylab --no-autoindent'
+#alias py='ipython'
+alias jnb='jupyter notebook'
+alias r='radian'
+alias qgis='qgis'
+
+# aliases that activate that 'sci' conda environment before using it
+alias ac='conda activate sci'
+alias acpy='conda activate sci; ipython --pylab'
+alias acjnb='conda activate sci; jupyter notebook'
+alias acr='conda activate sci; radian'
+alias acqgis='conda activate sci; qgis'
+
+# azcopy command
+alias azcopy='/home/deth/azcopy_linux_amd64_10.15.0/azcopy'
 
 
 #Add env vars also as commands, for quick jumping
@@ -395,7 +425,7 @@ alias RES='cd $RES'
 alias E='cd $E'
 alias T='cd $T'
 alias G='cd $G/'
-alias SA=' cd $RES/projects/seasonality'
+alias SA=' cd $SA'
 alias Q='cd $Q'
 alias DL='cd $DL'
 alias NIB='cd $NIB'
@@ -405,8 +435,26 @@ alias TID='cd $TID'
 alias N='cd $N'
 alias I='cd $I'
 alias J='cd $J'
-alias NCS='cd $NCS'
+alias TB='cd $TB'
+alias SC='cd $SC'
 
+# DETH: 04-20-21: TNC aliases
+alias BOX='cd $BOX'
+alias TNC='cd $TNC'
+alias RAF='cd $RAF'
+alias AFC='cd $AFC'
+# commands to mount and unmount TNC Box storage
+alias box='rclone mount --daemon tnc_box: /home/deth/Desktop/TNC/box_mount'
+alias debox='fusermount -u /home/deth/Desktop/TNC/box_mount'
+# my TNC todo list
+alias todo='vim ./Desktop/TODO.md'
+# open my hours spreadsheet
+alias hr='li /home/deth/Desktop/TNC/local/timesheet/FY24/DETH_FY24_timesheet.xlsx'
+# alias my Obsidian dir and my custom Obsidian commands
+alias OBS='cd $OBS'
+alias op='obspub'
+alias ow='obsperson'
+alias oc='obsconcept'
 
 
 ############# DEH: FUNCTIONS
@@ -457,6 +505,39 @@ function grepinall(){ grep -rne $1}
 #cpf() { cp "$@" && goto "$_"; }
 #mvf() { mv "$@" && goto "$_"; }
 #goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
+#
+
+
+# function for printing on home printer
+function prh(){lp -d Canon_MG7700_series $1}
+
+# function for copying a paper from cwd to Desktop,
+# reading it with zathura,
+# then (optionally) deleting when done reading
+# NOTE: 'zpr' short for Zathura paper, then remove
+function zpr(){cp $1 /home/deth/Desktop; zathura /home/deth/Desktop/$1; rm /home/deth/Desktop/$1}
+
+
+# OBSIDIAN FUNCTIONS (to help use Obsidian just directly from terminal)
+        # NOTE: these run a script that opens the correct template,
+        #       parses and preps it, saves it to a file,
+        #       then returns the path to file, which gets fed into vim
+        #       to open the file for editing
+function obsnote(){vim `python $OBS/scripts/make_new_obsidian_note.py $1 $2 $3`}
+# NOTE: defaults to a paper, but could be a video ('v'), etc., instead
+function obspub(){
+    def_fmt="p"
+    vim `python $OBS/scripts/make_new_obsidian_note.py $1 pub ${2:-$def_fmt}`}
+
+function obsperson(){
+    vim `python $OBS/scripts/make_new_obsidian_note.py $1 person`
+}
+function obsconcept(){
+    vim `python $OBS/scripts/make_new_obsidian_note.py $1 concept`
+}
+
+# functions to help setting up TTS MTG decks
+function mtg_decksave(){mv $1 $MTGSO}
 
 
 
@@ -464,7 +545,7 @@ function grepinall(){ grep -rne $1}
 
 export D=$HOME/Desktop  
 export DROP=~/Dropbox/
-export B=$D/stuff/berk
+export B=$D/CAL
 export RES=$B/research
 export E=$RES/projects/epiphytes
 export T=$RES/projects/trees
@@ -476,8 +557,10 @@ export DL=$B/dlab
 export N=$B/research/ideas_and_notes/notes/
 export I=$N/meeting_notes/ian_notes
 export A=$B/admin
-export O=$D/stuff/other
+export O=$D/other_stuff/etc
 export J=$B/semesters/20f/J10B
+export SA=$RES/projects/seasonality/seasonal_asynchrony
+export TB=$D/other_stuff/timber_bottom
 
 export NIB=/media/deth/NIBBIN/
 export NUB=/media/deth/MR\ NUBBIN
@@ -486,7 +569,19 @@ export MIKO=$DROP/mariko_and_drew_stuff
 export MUSIC=$NIB/music/
 export CODE=$NIB/code
 export P=$NIB/papers
-export NCS=$D/TNC/box/deth_work/lit/NCS_papers
+export SC=$D/scratch
+
+# DETH: 04-20-21: TNC exports
+export BOX=$D/TNC/box_mount
+export TNC=$D/TNC
+export RAF=$BOX/BOA/Projects/Bezos\ Earth\ Fund\ -\ NCS\ Science/Pathway\ Playbooks/Reforestation\ and\ Agroforestry/Projects/State\ of\ Agroforestry\ Knowledge/Bibliography_Agroforestry
+export AFC=$TNC/repos/avoided_forest_conversion
+
+# DETH: 08-25-21: Obsidian exports
+export OBS=/home/deth/Desktop/obsidian/deth_vault/
+
+# DETH 01/12/23: directory for TTS saved objects
+export MTGSO=/home/deth/.var/app/com.valvesoftware.Steam/data/Tabletop\ Simulator/Saves/Saved\ Objects
 
 #folder for current GSI position
 export GSI=$B/semesters/19f/espm_137
@@ -529,13 +624,17 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #DEH 08-11-18: Adding solarized dircolors
 #eval `dircolors /home/ihavehands/gnome-terminal-colors-solarized/dircolors`
 
+# DETH: 01-01-22: don't let conda auto activate base 
+CONDA_AUTO_ACTIVATE_BASE=false
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/deth/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
+#DETH: replace above line with this line speeds up zshell boot substantially but then zsh not properly configured for conda... rrrrrr
+#if [ 1 -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/deth/miniconda3/etc/profile.d/conda.sh" ]; then
+    if [ -f "/home/deth/miniconda3/etc/profile.d/coda.sh" ]; then
         . "/home/deth/miniconda3/etc/profile.d/conda.sh"
     else
         export PATH="/home/deth/miniconda3/bin:$PATH"
@@ -563,13 +662,19 @@ if [ -f '/home/deth/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/completion.zsh
 autoload bashcompinit && bashcompinit
 complete -C '/bin/aws_completer' aws
 
-export PATH="/home/deth/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # DETH: 03-27-21
 # just reset keyboard each time terminal launches
 # (not properly loading on bootup)
-xmodmap -e "keycode 112 = F3"
-xmodmap -e "keycode 117 = F2"
+xmodmap -e "keycode 112 = F2"
+xmodmap -e "keycode 117 = F3"
 xmodmap -pke > ~/.Xmodmap
+
+# DETH: 03-20-21
+# add snap bin to PATH
+export PATH="$PATH:/snap/bin/"
+source /home/deth/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# DETH: 12-28-21: I do it all the time anyhow, so just start off on Desktop!
+if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
+  cd $D
+fi

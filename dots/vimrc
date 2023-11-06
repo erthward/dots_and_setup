@@ -18,7 +18,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 "Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'morhetz/gruvbox'
@@ -28,7 +28,7 @@ Plugin 'connorholyday/vim-snazzy'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'fortes/vim-escuro'
 Plugin 'junegunn/seoul256.vim'
-Plugin 'aradunovic/perun.vim'
+"Plugin 'aradunovic/perun.vim'
 Plugin 'crusoexia/vim-dream'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
@@ -47,6 +47,11 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'junegunn/vim-emoji'
+Plugin 'arthurxavierx/vim-unicoder'
+"Plugin 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+"Plugin 'sheerun/vim-polyglot'
+"Plugin 'vim-python/python-syntax'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -107,7 +112,7 @@ au BufNewFile,BufRead *.py
 \| set fileformat=unix
 
 " And add different indentation for other file types
-au BufNewFile,BufRead *.js, *.html, *.css, *.r, *.R, *.sql, *.sh
+au BufNewFile,BufRead *.js,*.html,*.css,*.r,*.R,*.sql,*.sh
 \ set tabstop=2
 \| set softtabstop=2
 \| set shiftwidth=3
@@ -158,7 +163,9 @@ map <F5> :colorscheme PaperColor<CR>
 map <F6> :colorscheme gruvbox<CR>
 map <F7> :colorscheme tender<CR>
 let no_flake8_maps = 1
-map <F8> :color summerfruit256<CR>
+
+" make emoji-replacing command
+map <F8> :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
 
 
 " DEH: 01-23-19: Create hotkey for LLPStartPreview for LaTeX live rendering
@@ -228,3 +235,10 @@ setlocal expandtab
 
 " turn on cursorline
 set cursorline
+
+" start off with light background
+autocmd VimEnter * ToggleBG
+
+" wrap all slime-sent Python code in %cpaste and --, to preserve indentation
+let g:slime_python_ipython = 1
+

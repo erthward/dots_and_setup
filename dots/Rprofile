@@ -10,6 +10,3 @@ options(repos=structure(c(CRAN="http://cran.fhcrc.org")))
 fill_screen <- function(how_wide=Sys.getenv("COLUMNS")) {
   options(width=as.integer(how_wide))
 }
-
-.libPaths('/home/ihavehands/R/x86_64-pc-linux-gnu-library/3.1')
-
