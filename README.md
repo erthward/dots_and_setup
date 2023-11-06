@@ -3,7 +3,7 @@
 My collection of dotfiles and scripts for software installation and configuration,
 to make it easier for me to migrate my working environment to new machines.
 
-Scripts numerically named in the order in which they're intended to be used,
+Scripts are numerically named in the order in which they're intended to be used,
 and could either be executed wholesale or run interactively.
 (...Actually, probably the latter. The scripts may break part-way because
 of unforeseen dependency issues,
