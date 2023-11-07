@@ -1,14 +1,5 @@
 #NOTE: much of this file taken from Chris Small: git://github.com/metasoarous/dotfiles
 
-# DETH: 03-24-21:
-# get pywal colorscheme to apply to all terminals
-# FROM THE PYWAL WEBSITE:
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-# Not supported in the "fish" shell.
-(cat ~/.cache/wal/sequences &)
-
 autoload -U colors && colors
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -302,7 +293,8 @@ alias glance='cat "$@" | less'
 alias schedule='feh ~/Desktop/fall_14/SCHEDULE.png'
 alias yt='youtube2mp3'
 alias ok='okular'
-alias z='zathura'
+alias za='zathura'
+alias zo='~/Zotero_linux-x86_64/zotero'
 alias vb='virtualbox'
 alias nice_feh='feh -g 640x480'
 #Disable touchscreen if misbehaving
@@ -665,11 +657,12 @@ xmodmap -pke > ~/.Xmodmap
 # DETH: 03-20-21
 # add snap bin to PATH
 export PATH="$PATH:/snap/bin/"
-#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # DETH: 12-28-21: I do it all the time anyhow, so just start off on Desktop!
 if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
   cd $D
 fi
-#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /home/ter066/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# DETH: 11-07-23
+# add julia bin to PATH
+export PATH="$PATH:/home/ter066/julia-1.9.3/bin"

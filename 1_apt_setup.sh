@@ -22,6 +22,9 @@ for f in `ls ./dots_and_setup/dots`
 
 # if that succeeded then safely delete the old .bashrc whenever desired!
 
+# add ubuntugis repo to apt (for `gdal-bin` installation)
+sudo add-apt-repository ppa:ubuntugis/ppa
+
 # do other apt installs
 sudo apt install \
    python3 \
@@ -30,6 +33,7 @@ sudo apt install \
    imagemagick \
    mplayer \
    feh \
+   gdal-bin \
    brave-browser \
    chromium-browser \
    snapd

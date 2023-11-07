@@ -118,12 +118,6 @@ fi
 # DETH: 01-01-22: set python alias
 alias python='python3'
 
-# DETH: 03-23-21:
-# adding this to set up pyenv to launch automatically
-export PATH="/home/deth/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/ter066/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
