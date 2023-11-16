@@ -30,18 +30,24 @@ sudo apt install \
    python3 \
    zathura \
    qpdf \
+   xclip \
    imagemagick \
    mplayer \
    feh \
    gdal-bin \
    brave-browser \
    chromium-browser \
+   gnome-tweaks \
    snapd
 
 # run snap installs
+sudo snap install --edge ferdium
+  # NOTE: be sure to AV to Ferdium so Teams/etc work!
+  #       and also be sure to enable audio for teams within Ferdium!
+sudo snap connect ferdium:camera
+sudo snap connect ferdium:audio-record
 sudo snap install \
    firefox \
-   ferdi \
    spotify
 
 # now log into Spotify play something good!   :)

@@ -7,7 +7,10 @@ ZSH=$HOME/.oh-my-zsh
 # Theme to load - Look in ~/.oh-my-zsh/themes/ or set to "random"
 #ZSH_THEME="norm"
 #ZSH_THEME="gnzh"
-ZSH_THEME="agnoster_DETH"
+#ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster_DETH"
+#ZSH_THEME="dethcloud"
+ZSH_THEME="dethgnzh"
 
 # Otherwise fucks with tmux window naming
 DISABLE_AUTO_TITLE="true"
@@ -103,7 +106,7 @@ alias evrc='vim ~/.vimrc'
 alias seqinfo='seqmagick info'
 alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
-alias gpt='conda activate sci; python $D/stuff/etc/scripts/chat_with_gpt.py'
+alias gpt='conda activate sci; python ~/gpt/chat_with_gpt.py'
 
 # Archeopterix helper
 aptx() {
@@ -280,110 +283,47 @@ alias ijy='ipython notebook --pylab=inline --ext="rmagic" --browser=firefox --pr
 alias chripy='ipython notebook --pylab=inline --ext="rmagic" --browser=chromium-browser'
 alias chrijy='ipython notebook --pylab=inline --ext="rmagic" --browser=chromium-browser --profile julia'
 alias julcheat='zathura $NIB/code/julia/Julia-cheatsheet.pdf'
-alias google='w3m +7 www.google.com'
-alias wiki='w3m http://en.wikipedia.org/wiki/Main_Page#p-search'
-alias b='brave'
+alias b='brave-browser'
+alias e='microsoft-edge'
 alias f='firefox &'
 alias ch='chromium'
-alias g='google-chrome www.pandora.com'
 alias Z='vim ~/.zshrc'
-alias regex='cat ~/my_cheatsheets/regex_cheatsheet.txt | less'
-alias SQL='cat ~/SQL_cheatsheet.txt | less'
 alias glance='cat "$@" | less'
-alias schedule='feh ~/Desktop/fall_14/SCHEDULE.png'
-alias yt='youtube2mp3'
 alias ok='okular'
-alias za='zathura'
+alias z='zathura'
 alias zo='~/Zotero_linux-x86_64/zotero'
-alias vb='virtualbox'
-alias nice_feh='feh -g 640x480'
-#Disable touchscreen if misbehaving
-alias tscreen='if [ `xinput --list-props 9 | grep Enabled | cut -d: -f2` -eq 0 ]; then xinput --enable 9; else xinput --disable 9; fi'
-alias mat='matlab -nodesktop -nosplash'
 alias pot='spotify'
-alias cheapspot='bash -c '"'"'sleep 15 && kill $(ps -A | grep -i "spotifyhelper$" | grep -oE "^[1-9,0]*\s")'"'"' & ; spotify' #kill stupid SpotifyHelper, which guzzles CPU
-alias q='tmuxifier load-session quant'
 alias now='date +"%T"'
 alias die='kill %1; fg %1'
-alias header='vim ~/pytools/DATA_header.py'
-alias protege='bash ~/Protege_5.0_beta/run.sh'
-alias chk_router='sudo nmap -oN ~/router/nmap_info/nmap_info.txt -sn 192.168.1.1/24; python ~/router/nmap_info/collect_MAC_addresses.py'
-alias watch_router='sudo airmon-ng start wlan0 11; sudo airodump-ng -c 11 -w ~/router/airdump_info/router_info.txt --bssid 68:7F:74:55:CA:E4 mon0'
-alias MAC='cat ~/router/nmap_info/MAC_addresses.txt | less'
 alias copy='xclip -sel clip'
 alias rm='rm -i'
 alias getgiturl='git config --get remote.origin.url | xclip -sel clip'
-alias getgitpat='xclip -selection c /home/deth/Desktop/stuff/keys/ghpat.txt'
-alias getmyorcid='xclip -selection c /home/deth/Desktop/stuff/keys/myorcid.txt'
-alias getazcs='xclip -selection c /home/deth/Desktop/stuff/keys/azcs.txt'
-alias rbook='okular /run/media/drew/NIBBIN/code/R/the_R_book.pdf'
-alias movies='vim $DROP/mariko_and_drew_stuff/movies.txt'
-alias wou='vim $DROP/mariko_and_drew_stuff/we_o_us.txt'
-alias dist='zathura $NIB/code/R/Distribution_cheat_sheet_revised_1_3_15_HOBBS_HOOTEN.pdf'
-alias comp='feh -g 640x480 $D/other/comparison/*'
-alias cm='cmatrix'
-alias ref='referencer'
-alias kana='kanatest'
-alias gram='ok $D/grammar_guide.pdf'
-#alias ab='clip $D/other/airbears.txt'
-alias ab='cat $D/other/airbears.txt'
-alias torbrow='bash ~/tor-browser_en-US/Browser/start-tor-browser'
-alias con='sudo openconnect ucbvpn.berkeley.edu --authgroup="3-Library_VPN" -u drew.hart'
-alias pop='java -jar $B/spring_17/popgen/PopG/PopG.jar'
-alias fel='java -jar $B/spring_17/popgen/Felsenstein.jar'
-alias land='vim $D/landfund.txt'
-alias slab='ssh -Y drew@`cat $DROP/office_ip.txt`'
-alias flab='sftp drew@`cat $DROP/office_ip.txt`'
-alias wlab='wakeonlan -i `cat $DROP/office_ip.txt ` `cat $DROP/office_eth2_MAC.txt` && slab'
 alias sav='ssh drewhart@hpc.brc.berkeley.edu'
 alias savy='ssh -Y drewhart@hpc.brc.berkeley.edu'
-alias qp='qpdfview'
+alias benten='ssh drew.hart@benten.dlab.berkeley.edu'
+alias xs='ssh -Y drewhart@login.xsede.org'
 alias XXX='shutdown now'
 alias RRR='shutdown now -r'
 alias ZZZ='systemctl suspend'
 alias fh='feh -ZFd'
 alias rs='rstudio'
-alias cheatex='qpdfview ~/latex_cheatsheet.pdf'
-alias skype='skypeforlinux'
-#sp="speaker"
-#alias sp='bash ~/switch_audio_output.sh'
-#sa="switch audio"
-alias sa='bash ~/switch_audio_sink.sh'
-alias gsi='cd $GSI'
-alias benten='ssh drew.hart@benten.dlab.berkeley.edu'
 alias jl='julia'
-alias tj='brave /home/drew/Desktop/think_julia/benlauwens.github.io'
-alias bq='python /home/drew/Desktop/aves/bird_quiz/code/bird_quiz.py'
-#alias conda='~/miniconda3/bin/conda'
-#alias conda-build='~/miniconda3/bin/conda-build'
-alias xs='ssh -Y drewhart@login.xsede.org'
-alias geo='ok ~/References/geo_timescale_GSA.pdf'
 #command to read today's MODIS-image descriptive text
 alias modis='bash /home/ter066/MODIS_daily_img/code/update_background.sh'
 alias modistxt='cat /home/ter066/MODIS_daily_img/today.txt | less'
 alias mot='modistxt'
 alias modissave='python /home/ter066/MODIS_daily_img/code/archive_MODIS_background.py'
 alias mofh='fh ~/Pictures/MODIS_daily.jpg'
-alias tobira='zathura $J/TOBIRA.pdf'
 # command to help check disk usage (easier name to remember)
 # (run in the directory whose subdirectories and files should be sized up)
 alias usage='ncdu' 
 # command to lock the screen
 alias lk='xflock4'
-# a command to launch the iPython inside whatever virtualenv is active,
-# rather than the system default version of Python
-alias ipy_venv="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 # open the settings manager easily from the CLI
 alias sets="xfce4-settings-manager"
-# lftp to my Berkeley Box account
-alias bbox="lftp drew.hart@berkeley.edu@ftp.box.com"
-# launch zotero
-alias zot="$HOME/zotero/Zotero_linux-x86_64/zotero"
 # launch obsidian
 alias o='obsidian'
 alias pushobs='cd $OBS; git add -A; date | git commit -F -; git push -u origin main; cd -'
-# open a PDF time zone map
-alias tz='z ~/tzs.pdf'
 
 
 # aliases to use within my 'sci' conda environment
@@ -393,7 +333,6 @@ alias tz='z ~/tzs.pdf'
 #       bit like this, see if no pylab creates problems, then
 #       decide whether or not napari needs to remain installed anyhow
 alias py='ipython --pylab --no-autoindent'
-#alias py='ipython'
 alias jnb='jupyter notebook'
 alias r='radian'
 alias qgis='qgis'
@@ -411,37 +350,10 @@ alias azcopy='/home/deth/azcopy_linux_amd64_10.15.0/azcopy'
 
 #Add env vars also as commands, for quick jumping
 alias D='cd $D'
-alias DROP='cd $DROP'
-alias B='cd $B'
 alias RES='cd $RES'
-alias E='cd $E'
-alias T='cd $T'
-alias G='cd $G/'
-alias SA=' cd $SA'
-alias Q='cd $Q'
-alias DL='cd $DL'
 alias NIB='cd $NIB'
 alias SLAB='cd $SLAB'
-alias P='cd $P'
-alias TID='cd $TID'
-alias N='cd $N'
-alias I='cd $I'
-alias J='cd $J'
-alias TB='cd $TB'
-alias SC='cd $SC'
 
-# DETH: 04-20-21: TNC aliases
-alias BOX='cd $BOX'
-alias TNC='cd $TNC'
-alias RAF='cd $RAF'
-alias AFC='cd $AFC'
-# commands to mount and unmount TNC Box storage
-alias box='rclone mount --daemon tnc_box: /home/deth/Desktop/TNC/box_mount'
-alias debox='fusermount -u /home/deth/Desktop/TNC/box_mount'
-# my TNC todo list
-alias todo='vim ./Desktop/TODO.md'
-# open my hours spreadsheet
-alias hr='li /home/deth/Desktop/TNC/local/timesheet/FY24/DETH_FY24_timesheet.xlsx'
 # alias my Obsidian dir and my custom Obsidian commands
 alias OBS='cd $OBS'
 alias op='obspub'
@@ -450,23 +362,6 @@ alias oc='obsconcept'
 
 
 ############# DEH: FUNCTIONS
-
-function dict() {sdcv -c -u dictd_www.dict.org_gcide "$@" | less;}
-function bouv() {sdcv -c -u "Bouvier's Law Dictionary" "$@" | less;}
-function tech() {for i in "GNU/Linux English-English Dictionary" "Free On-Line Dictionary of Computing" "Jargon File"; do sdcv -c -u $i "$@"; done | less;}
-function sd() {sdcv -c "$@" | less;}
-function s2e() {sdcv -c -u I2E\ Spanish-English "$@" | less;}
-function e2s() {sdcv -c -u I2E\ English-Spanish "$@" | less;}
-function e2f() {sdcv -c -u English-French "$@" | less;}
-function etym() {sdcv -c -u English\ Etymology "$@" | less;}
-function thes() {sdcv -c -u English\ Thesaurus "$@" | less;}
-function c() {"$@" | wc -l;}
-
-function my_man() {"$@" --help | less;}
-
-function track() {geoiplookup -f /usr/share/GeoIP/GeoLiteCity.dat "$@";}
-function track_online() {curl ipinfo.io/"$@";}
-
 
 #A function to display csv files nicely in the command line
 function csv() {
@@ -483,9 +378,6 @@ function tabcsv() {
 
 function clip() {xclip -sel clip < $1}
 
-#Shortcut to power off system after n minutes (for listening when going to sleep...)  :)
-function musicXXX(){sudo shutdown -P "$@";}
-
 #Move or cp files or make directories and follow them 
 function cpf(){ cp "$1" "$2" && cd "$2" }
 function mvf(){ mv "$1" "$2" && cd "$2" }
@@ -494,20 +386,9 @@ function mkf(){ mkdir "$1" && cd "$1" }
 #Grep a pattern in all files here or further into the directory tree
 function grepinall(){ grep -rne $1}
 
-#cpf() { cp "$@" && goto "$_"; }
-#mvf() { mv "$@" && goto "$_"; }
-#goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
-#
-
 
 # function for printing on home printer
 function prh(){lp -d Canon_MG7700_series $1}
-
-# function for copying a paper from cwd to Desktop,
-# reading it with zathura,
-# then (optionally) deleting when done reading
-# NOTE: 'zpr' short for Zathura paper, then remove
-function zpr(){cp $1 /home/deth/Desktop; zathura /home/deth/Desktop/$1; rm /home/deth/Desktop/$1}
 
 
 # OBSIDIAN FUNCTIONS (to help use Obsidian just directly from terminal)
@@ -536,61 +417,11 @@ function mtg_decksave(){mv $1 $MTGSO}
 ############# DEH: ENV VARS
 
 export D=$HOME/Desktop  
-export DROP=~/Dropbox/
-export B=$D/CAL
-export RES=$B/research
-export E=$RES/projects/epiphytes
-export T=$RES/projects/trees
-export S=$RES/projects/sim
-export G=$S/geonomics/geonomics
-export Q=$B/quals
-export TID=$DROP/tiddlywiki
-export DL=$B/dlab
-export N=$B/research/ideas_and_notes/notes/
-export I=$N/meeting_notes/ian_notes
-export A=$B/admin
-export O=$D/other_stuff/etc
-export J=$B/semesters/20f/J10B
-export SA=$RES/projects/seasonality/seasonal_asynchrony
-export TB=$D/other_stuff/timber_bottom
-
 export NIB=/media/deth/NIBBIN/
-export NUB=/media/deth/MR\ NUBBIN
 export SLAB=/media/deth/SLAB/
-export MIKO=$DROP/mariko_and_drew_stuff
-export MUSIC=$NIB/music/
-export CODE=$NIB/code
-export P=$NIB/papers
-export SC=$D/scratch
-
-# DETH: 04-20-21: TNC exports
-export BOX=$D/TNC/box_mount
-export TNC=$D/TNC
-export RAF=$BOX/BOA/Projects/Bezos\ Earth\ Fund\ -\ NCS\ Science/Pathway\ Playbooks/Reforestation\ and\ Agroforestry/Projects/State\ of\ Agroforestry\ Knowledge/Bibliography_Agroforestry
-export AFC=$TNC/repos/avoided_forest_conversion
 
 # DETH: 08-25-21: Obsidian exports
 export OBS=/home/deth/Desktop/obsidian/deth_vault/
-
-# DETH 01/12/23: directory for TTS saved objects
-export MTGSO=/home/deth/.var/app/com.valvesoftware.Steam/data/Tabletop\ Simulator/Saves/Saved\ Objects
-
-#folder for current GSI position
-export GSI=$B/semesters/19f/espm_137
-
-#DEH 05-14-19: Adding correct path to libjvm.so, so that `sudo R CMD javareconf` works
-#and rJava R library can be used
-export LD_LIBRARY_PATH=/usr/lib/jvm/default/jre/lib/amd64/server
-
-#Adding methgo directory to $PATH
-export PATH=$PATH:$B/courses/spring_16/CONS_GEN_WKSHP/software/methgo
-
-#Adding EDirect directory to $PATH
-export PATH=$PATH:$HOME/edirect
-
-
-#DEH Try to get postgresql connection with psycopg2, etc working, by setting PGDATA variable
-export PGDATA=$HOME/my_pgsql_data/
 
 #A place to tweak ls colors:
 #
@@ -634,25 +465,12 @@ unset __conda_setup
 # if not already downloaded, and set it as the desktop image
 modis
 
-# DEH: 05-07-2020:
-# The following couple commands were added when I installed Google Cloud SDK:
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/deth/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/path.zsh.inc' ]; then . '/home/deth/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/deth/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/deth/Desktop/tmp_google_cloud_SDK/google-cloud-sdk/completion.zsh.inc'; fi
-
-# DEH: 02-07-21:
-# enable command completion for the AWS CLI
-autoload bashcompinit && bashcompinit
-complete -C '/bin/aws_completer' aws
-
 # DETH: 03-27-21
 # just reset keyboard each time terminal launches
 # (not properly loading on bootup)
-xmodmap -e "keycode 112 = F2"
-xmodmap -e "keycode 117 = F3"
-xmodmap -pke > ~/.Xmodmap
+#xmodmap -e "keycode 112 = F2"
+#xmodmap -e "keycode 117 = F3"
+#xmodmap -pke > ~/.Xmodmap
 
 # DETH: 03-20-21
 # add snap bin to PATH
