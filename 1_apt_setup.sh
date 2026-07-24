@@ -27,18 +27,33 @@ sudo add-apt-repository ppa:ubuntugis/ppa
 
 # do other apt installs
 sudo apt install \
+   # scripting tools
    python3 \
+   # PDF tools
    zathura \
+   okular \
+   xournalpp \
    qpdf \
+   pdftk \
+   # copy/paste tool
    xclip \
+   # file-renaming tool
+   rename \
+   # image and video tools
    imagemagick \
-   mplayer \
    feh \
+   mplayer \
+   # spatial tools
    gdal-bin \
+   # web tools
    brave-browser \
    chromium-browser \
    gnome-tweaks \
+   # software install tools
    snapd
+
+# make sure zathura copies to main clipboard
+echo "set selection-clipboard clipboard" >> ~/.config/zathura/zathurarc
 
 # run snap installs
 sudo snap install --edge ferdium

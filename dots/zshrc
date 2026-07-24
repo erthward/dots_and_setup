@@ -82,7 +82,8 @@ export CHEATCOLORS=true
 # Listing aliases
 alias ll='ls -hl'
 alias la='ls -hla'
-alias lat='ls -hlat'
+alias lsH='ls -lath'
+alias lsh='ls -lath | head'
 alias wdid='ls -chlt | head'
 alias l='ls -hl'
 alias lt='ls -hlt'
@@ -285,7 +286,7 @@ alias chrijy='ipython notebook --pylab=inline --ext="rmagic" --browser=chromium-
 alias julcheat='zathura $NIB/code/julia/Julia-cheatsheet.pdf'
 alias b='brave-browser'
 alias e='microsoft-edge'
-alias f='firefox &'
+alias f='ferdium'
 alias ch='chromium'
 alias Z='vim ~/.zshrc'
 alias glance='cat "$@" | less'
@@ -300,11 +301,13 @@ alias rm='rm -i'
 alias getgiturl='git config --get remote.origin.url | xclip -sel clip'
 alias sav='ssh drewhart@hpc.brc.berkeley.edu'
 alias savy='ssh -Y drewhart@hpc.brc.berkeley.edu'
+alias spet='ssh -X ter066@petrichor.hpc.csiro.au'
 alias benten='ssh drew.hart@benten.dlab.berkeley.edu'
 alias xs='ssh -Y drewhart@login.xsede.org'
 alias XXX='shutdown now'
 alias RRR='shutdown now -r'
 alias ZZZ='systemctl suspend'
+alias LLL='xdg-screensaver lock'
 alias fh='feh -ZFd'
 alias rs='rstudio'
 alias jl='julia'
@@ -312,6 +315,7 @@ alias jl='julia'
 alias modis='bash /home/ter066/MODIS_daily_img/code/update_background.sh'
 alias modistxt='cat /home/ter066/MODIS_daily_img/today.txt | less'
 alias mot='modistxt'
+alias mosc='bash /home/ter066/MODIS_daily_img/code/shortcut_date.sh'
 alias modissave='python /home/ter066/MODIS_daily_img/code/archive_MODIS_background.py'
 alias mofh='fh ~/Pictures/MODIS_daily.jpg'
 # command to help check disk usage (easier name to remember)
@@ -332,7 +336,7 @@ alias pushobs='cd $OBS; git add -A; date | git commit -F -; git push -u origin m
 #       after running `pip install "napari[all]"`. Will try for a 
 #       bit like this, see if no pylab creates problems, then
 #       decide whether or not napari needs to remain installed anyhow
-alias py='ipython --pylab --no-autoindent'
+alias py='ipython --pylab="qt6" --no-autoindent'
 alias jnb='jupyter notebook'
 alias r='radian'
 alias qgis='qgis'
@@ -346,13 +350,6 @@ alias acqgis='conda activate sci; qgis'
 
 # azcopy command
 alias azcopy='/home/deth/azcopy_linux_amd64_10.15.0/azcopy'
-
-
-#Add env vars also as commands, for quick jumping
-alias D='cd $D'
-alias RES='cd $RES'
-alias NIB='cd $NIB'
-alias SLAB='cd $SLAB'
 
 # alias my Obsidian dir and my custom Obsidian commands
 alias OBS='cd $OBS'
@@ -417,13 +414,43 @@ function mtg_decksave(){mv $1 $MTGSO}
 ############# DEH: ENV VARS
 
 export D=$HOME/Desktop  
-export NIB=/media/deth/NIBBIN/
-export SLAB=/media/deth/SLAB/
+export SLAB=/media/ter066/SLAB/
 
-# DETH: 08-25-21: Obsidian exports
-export OBS=/home/deth/Desktop/obsidian/deth_vault/
 
-#A place to tweak ls colors:
+############ CSIRO SETUP:
+export CSIRO=$D/main/H88_life/60-69_work/62_CSIRO
+export CO=$D/main/S32_spacecows
+export CO_RE=$CO/30-39_tech/31_repos/31.01_SpaceCows
+export KO=$D/main/S31_NKMP
+export SCU=$D/main/S39_CSIRO_general/30-39_tech/31_repos/31.01_cloud_utils/scuamate/scuamate
+export EKS=$D/main/S34_EKS/30-39_tech/31_repos/EcologicalKnowledgeSystem-DBAM
+export TERN=$D/main/S33_TERN/
+export FAC=$D/fac
+
+# And add env vars also as commands, for quick jumping
+alias D='cd $D'
+alias RES='cd $RES'
+alias NIB='cd $NIB'
+alias SLAB='cd $SLAB'
+alias CSIRO='cd $CSIRO'
+alias CO='cd $CO'
+alias CO_RE='cd $CO_RE'
+alias KO='cd $KO'
+alias SCU='cd $SCU'
+alias EKS='cd $EKS'
+alias TERN='cd $TERN'
+alias FAC='cd $FAC'
+alias floormaps='fh $CSIRO/62.99_utils/workstation_map*'
+alias hrs='li $D/DETH_hours_worked.xlsx'
+alias run='li $D/longest_runs.csv'
+
+# connect to Bowen storage accounts
+alias mount_bow='bash /home/ter066/Desktop/main/H88_life/60-69_work/62_CSIRO/62.99_utils/mount_bowen_storage.sh m'
+alias umount_bow='bash /home/ter066/Desktop/main/H88_life/60-69_work/62_CSIRO/62.99_utils/mount_bowen_storage.sh u'
+
+
+
+# tweak ls colors:
 #
 #[from output of `dircolors --print-database`]
 #
@@ -439,8 +466,8 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-#DEH 08-11-18: Adding solarized dircolors
-#eval `dircolors /home/ihavehands/gnome-terminal-colors-solarized/dircolors`
+# DETH: 23-11-23: comments are currently nearly invisible because of poor color choice, so changing that:
+ZSH_HIGHLIGHT_STYLES[comment]="fg=#a5a0b0"
 
 # DETH: 01-01-22: don't let conda auto activate base 
 CONDA_AUTO_ACTIVATE_BASE=false
@@ -484,3 +511,19 @@ fi
 # DETH: 11-07-23
 # add julia bin to PATH
 export PATH="$PATH:/home/ter066/julia-1.9.3/bin"
+
+# DETH: 19-12-24: disable stupid middle-click paste
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+
+# DETH: 17-02-25: convenience alias and function for NBAS testing
+export NBASTEST="/home/ter066/Desktop/NBAS_testing"
+function nbas() {
+          cd $NBASTEST;        
+          conda activate sci
+          python /home/ter066/Desktop/main/S34_EKS/30-39_tech/31_repos/31.01_DBAM/src/run_nbas_payload.py "$1"
+        }
+
+
+
+# Created by `pipx` on 2025-10-09 00:19:12
+export PATH="$PATH:/home/ter066/.local/bin"

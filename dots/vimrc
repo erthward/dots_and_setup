@@ -51,7 +51,7 @@ Plugin 'junegunn/vim-emoji'
 Plugin 'arthurxavierx/vim-unicoder'
 "Plugin 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "Plugin 'sheerun/vim-polyglot'
-"Plugin 'vim-python/python-syntax'
+Plugin 'vim-python/python-syntax'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -138,7 +138,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "      EOF
 
 " Make syntax-highlighting prettier
-let python_highlight_all=1
+let g:python_highlight_all=1
 syntax on
 
 " Add some logic for colorscheme usage
@@ -242,3 +242,5 @@ autocmd VimEnter * ToggleBG
 " wrap all slime-sent Python code in %cpaste and --, to preserve indentation
 let g:slime_python_ipython = 1
 
+" set the ft_sql plugin prefix key to something different from <Ctrl>+C
+let g:ftplugin_sql_omni_key = '<C-j>'
