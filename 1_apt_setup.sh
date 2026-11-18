@@ -22,22 +22,32 @@ for f in `ls ./dots_and_setup/dots`
 
 # if that succeeded then safely delete the old .bashrc whenever desired!
 
+# add ubuntugis repo to apt (for `gdal-bin` installation)
+sudo add-apt-repository ppa:ubuntugis/ppa
+
 # do other apt installs
 sudo apt install \
    python3 \
    zathura \
    qpdf \
+   xclip \
    imagemagick \
    mplayer \
    feh \
+   gdal-bin \
    brave-browser \
    chromium-browser \
+   gnome-tweaks \
    snapd
 
 # run snap installs
+sudo snap install --edge ferdium
+  # NOTE: be sure to AV to Ferdium so Teams/etc work!
+  #       and also be sure to enable audio for teams within Ferdium!
+sudo snap connect ferdium:camera
+sudo snap connect ferdium:audio-record
 sudo snap install \
    firefox \
-   ferdi \
    spotify
 
 # now log into Spotify play something good!   :)

@@ -37,7 +37,6 @@ dependencies:
   - jupyter
   - jupyter_client
   - keras
-  - latlon_utils
   - mahotas
   - mapclassify
   - matplotlib
@@ -48,7 +47,7 @@ dependencies:
   - oauth2client
   - palettable
   - pandas
-  - planetary_computer
+  - planetary-computer
   - psutil
   - pykrige
   - pyproj

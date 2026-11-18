@@ -30,8 +30,11 @@ bash ./install.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# get tmuxifier
+# get tmuxifier and Tmux Plugin Manager (tpm)
 git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# NOTE: then start tmux and run `tmux source ~/.tmux.conf` to install plugins
 
 # install pywal
 pip3 install pywal
