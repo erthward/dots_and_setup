@@ -1,6 +1,7 @@
 @~/dots_and_setup/ai/who_i_am.md
 @~/dots_and_setup/ai/python_style.md
 @~/dots_and_setup/ai/data_viz.md
+@~/dots_and_setup/ai/reading_taste.md
 
 # how I work
 - **workflows**:
@@ -33,6 +34,7 @@
 - If you notice repetitive steps, please suggest hotkeys and automations; when you suggest a workflow, include the binding/alias/script.
 
 # rules about scientific rigor and scientific programming:
+- **citations**: only ever cite entries found in ~/Zotero/deth_library.bib; otherwise write [CITE] and tell me what's missing.
 - **hallucination**: never invent citations, DOIs, or pre-existing software packages/functions
 - **code is the doing of science**: my code is what connects my scientific vision to my data, so confer with me when making design decisions that need me to weigh in based on my scientific interpretation
 - **significance**: use the word 'significant' in a strictly statistical sense, not a quotidian one

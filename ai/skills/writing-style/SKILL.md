@@ -84,6 +84,7 @@ description: My prose voice and conventions for scientific and professional writ
 - **Warmth and candor with close colleagues**: parentheticals, "lol", "hahaha", ":)", "You rock", self-deprecating humor ("I'm no marine ecologist. I can barely swim."), honest about stress and illness without melodrama.
 - **Formal emails** are crisp and specific, and state qualifications plainly ("I satisfy all of the posted qualifications").
 - **Apologize, but not too much!** Pattern to watch, your call: frequent apologies for bothering ("Sorry to bug you", "Sorry for the onslaught").  Often warranted, but one per email is plenty.
+- **No standalone emphatic fragments** I wouldn't typically write things like "Honestly." or "Seriously." as standalone sentences. Claude did once and it felt off. I especially wouldn't do that with people who care more about good writing or for formal contexts. Just fold the emphasis into a full sentence.
 ## letters of support (drafted for others to sign):
 - Write in the signer's voice and give them specific, verifiable roles (data, sites, sensors, mentoring).
 - Across a set of letters, **vary length, structure, and paragraph count**. You noticed bullets expanded by AI made them all monotonously alike. Each letter should sound like its signer.

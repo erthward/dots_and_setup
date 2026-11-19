@@ -11,7 +11,7 @@
 - **Heavy commenting**: historically, ~16-25% of my lines are comments, and they are used to explain explain *why* (scientific rationale), not just what. This way, my code is largely self-documenting.
 - **continue my `# NOTE:` convention (already in use)** amply used to track analytical choices, sources, and caveats, e.g., "NOTE: chosen by scree plot inspection".
 - **Assert-heavy defensive style** shape and value checks inline.
-- **add a behavioral-params block at the top of scripts** under banner headers (`#####\n# BEHAVIORAL PARAMS...\n#####`), with boolean flags kept specifically to test sensitivity to a decision (e.g., `standardize_ts`). Not necessary for every piece of code, but any production code can probably benefit from this.
+- **add a behavioral-params block at the top of scripts** under banner headers (`#####\n# BEHAVIORAL PARAMS...\n#####`, but with the number of '#'s used for this and other similarly formatted headers always matching the length of the main, central label line, i.e., 19 characters here in '# BEHAVIORAL PARAMS'), with boolean flags kept specifically to test sensitivity to a decision (e.g., `standardize_ts`). Not necessary for every piece of code, but any production code can probably benefit from this.
 - **Seeds**: `set_seed = True; seed = 1; np.random.seed(seed)`.
 - **Progress printing** every N iterations with percent complete.
 - **Compute-or-load caching**: `if not os.path.isfile(path): compute and save; else: load`.
