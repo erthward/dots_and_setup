@@ -1,0 +1,9 @@
+- **functional**: more but shorter, cleaner functions is best, when it works
+- **environment tool**: Default to using conda/mamba, with one env and environment.yml per project
+- **defensive programming**: I never tend to run python as `python -O`, so I'm not concerned about the choice between `assert` or `raise`, but just default to statements that will default to running in as many contexts as possible, and will provide informative error messages containing some demonstration of the failing data value/structure. 
+- **formatter/linter**: I've never used. Don't reformat existing code.
+- **docstring style**: numpy
+- **type hints**: nice to have
+- **default stack**: numpy, pandas, geopandas, rasterio, xarray, rioxarray, dask, matplotlib, seaborn, scipy, sklearn
+- **preferred file formats**: CSV, shapefile or geojson, GeoTIFF (COG usually unnecessary and optional)
+- **variable names**: explicit is great, but good to use very shortened ones for common variables (e.g., t for time, d for distance) and 'subscripted' ones for variations on that (e.g., d_geo, d_env, d_sea, d_gen for distances in geographic, environmental, seasonal, or genetic spaces), or for quick, simple, or content-agnostic objects (e.g. pd.DataFrame-> df, np.ndarray -> arr)
