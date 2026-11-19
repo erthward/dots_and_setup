@@ -6,8 +6,15 @@ description: My data visualization style for plots and maps. Use whenever writin
 - **precdence**: These conventions override any other dataviz guidance.
 - **minimalism**: Less is more! Visually unencumbered. Don't add and actively remove clutter. Every component should earn its keep. Let the data speak loudly, clearly, and directly communicate the intended scientific point.
 - **exploratory first, clean up for pub later**: no need to waste resources and time fine-tuning plotting code until I pull the trigger on including a plot in a publication. If in doubt, just leave something simple/unaddressed and then raise the thought/question with me and we can decide together whether and how to refine.
+- **data-driven color**: where possible, let the data generate the color (e.g., RGB composite of top EOF modes), then reuse those exact colors to link panels (cluster colors on the map = line colors in the companion phenocycle plots).  Color as a cross-panel key is a signature move; prefer it over arbitrary categorical palettes.
+- **concept + data pairing**: pair data panels with a small schematic panel that shows the idea being tested (e.g., "low asynchrony" vs "high asynchrony" mini-diagrams above the maps).
+- **natural history in the figure**: include organism photos or illustrations (with credit lines) when a figure is about taxa.
+- **show the null**: when testing against a permutation/Monte Carlo null, show the null distribution (inset histogram) with the observed value marked; overlay treatment vs null distributions with transparency (e.g., red vs blue).
+- **uncertainty**: ribbons for percentile ranges (default 10th-90th) around medians; state the range in the caption.
+- **in-panel stats**: annotate key statistics (slope, P) inside the panel, colored to match the fitted line.
+- **generalize plot-parameter definition**: Rather than hard-coding plot parameters per script, a shared style module/mplstyle would remove most of this repetition. ...However, if it ain't broke don't fix it! I'd rather 'suboptimal' code that doesn't generate more work/overhead.
 
-# libraries:
+# preferred libraries:
 - **python**:
   - matplotlib
   - palettable
@@ -16,16 +23,22 @@ description: My data visualization style for plots and maps. Use whenever writin
   - geopandas
 - **R**:
   - ggplot2
+- that said, I'm **always opening to learning new libraries and tools!** whatever is best for my science. Please feel free to recommend better/cooler/newer tootls. I don't actively stay up on this stuff otherwise.
 
 # palettes:
 - **colorblind-friendliness**: ensure whenever possible, but let the science take precent (e.g, if it makes sense to render an RGB visualization of 3-dimensional results then I will defer to that and add a colorblind-friendly supplemental figure, if necessary)
-- **sequential**: default to viridis
+- **sequential**: viridis for general use; for intensity-type maps (e.g., asynchrony hotspots) a dark-to-bright
 - **diverging**: default to coolwarm; center on a meaningful value (0, typically) and with TwoSlopeNorm. Don't let the midpoint drift with the data range. Note that I often wind up aactually forcing both sides of the divergence to have the same maximum absolute value, even if one side has much less extreme values in the actual dataset, for purposes of scientific interpretability, so please prompt me if unsure!l
-- **discrete**: default to Paul Tol's "bright" (can prompt me if I might prefer "muted" or Okabe-Ito or your built-in Dark2 instead, on a case-by-case basis)
+- **discrete**: if not using data-driven colors (e.g., RGB cluster-centers), then default to Paul Tol's "bright" (can prompt me if I might prefer "muted" or Okabe-Ito or your built-in Dark2 instead, on a case-by-case basis)
+  perceptually uniform map: Crameri scientific maps via palettable (e.g., LaJolla reversed) or magma.
 
 # axes:
 - always include units and left and bottom spines
 - I only tend to use gridlines if I feel they actually help make sense of a specific set of results
+- **seasonal time axes**: ticks at Jan, Apr, Jul, Oct, Jan; for hemisphere-comparable plots, run July-July south of the
+  ITCZ/equator and say so on the axis or in the caption.
+- **small-multiple grids**: factor labels outside the grid (row labels rotated, column headers on top, a shared bold
+  header per grid); keep axes identical across cells and drop redundant tick labels.
 
 # maps:
 - **precedence**: let these conventions override those from above, as necessary
@@ -33,6 +46,12 @@ description: My data visualization style for plots and maps. Use whenever writin
 - **rasters and vectors together**: I often plot rasters and vectors together
 - **projection**: I typically prefer equal-area projections (for global work, Equal Earth is great!)
 - **cartography**: I don't have formal classwork/training in this, and I gather there are people who are precious about including compass symbols, scale bars, CRS/projection information, etc. I am not one of those people and will request such things if and when necessary. Prefer to default to minimalism without worrying about these minor concerns. I'm interested in the scientific ideas, not the presentational conventions, and my maps are usually part of a larger figure or embedded in a context that make this information clear (e.g., methods section will specify CRS).
+- No frame, no spines, no ticks; masked/excluded areas in light gray; land-only global maps.
+- Regional zooms as inset panels with black locator rectangles on the global map, lettered to match the panel labels.
+- Sensitivity grids: rows = variables, columns = parameter settings (e.g., 50/100/150 km), one shared colorbar per row.
+
+# dynamic and interactive media:
+- Animations (looping GIF/MP4 of rescaled seasonal cycles) and interactive viewers (e.g., GEE apps) are first-class outputs for science communication. Plan for them when results are spatiotemporal.
 
 # my 'calling card':
 - aspects to leave my own personal 'fingerpint' on all plots:
@@ -62,3 +81,8 @@ description: My data visualization style for plots and maps. Use whenever writin
 - **color**: RGB, colorblind-safe, readable in grayscale where feasible; never encode meaning by color alone if a second channel (shape, linestyle, label) is cheap.
 - **implementation**: put all of this in one `.mplstyle` (plus a ggplot2 theme for R), version-controlled in ~/dots_and_setup, with a small helper `fig(width='single'|'double'|..., mode='paper'|'slide'|'proposal')`.
 - **consider suggesting improvements**: Claude Code generated this whole block to satisfy the widest possible range of high-impact journals, presentation formats, and proposals, so I'll be keen to refine/enhance as I move forward.
+
+
+
+
+

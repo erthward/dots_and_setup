@@ -1,4 +1,4 @@
-@~/dots_and_setup/ai/about_me.md
+@~/dots_and_setup/ai/who_i_am.md
 @~/dots_and_setup/ai/python_style.md
 @~/dots_and_setup/ai/data_viz.md
 
