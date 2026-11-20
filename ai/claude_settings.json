@@ -1,24 +1,23 @@
 {
-  "theme": "auto",
   "permissions": {
-      "defaultMode": "default",
-      "ask": [
-          "Edit",
-          "Write",
-          "NotebookEdit",
-          "Bash(rm:*)"
-      ],
-      "deny": [
-          "Bash(git commit:*)",
-          "Bash(git push:*)",
-          "Bash(git reset:*)",
-          "Bash(git rebase:*)"
-      ]
+    "deny": [
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)"
+    ],
+    "ask": [
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "Bash(rm:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "defaultMode": "default"
   },
   "sandbox": {
-      "enabled": true,
-      "autoAllowBashIfSandboxed": false,
-      "allowUnsandboxedCommands": false
-  }
+    "enabled": true,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": false
+  },
+  "theme": "auto"
 }
-
